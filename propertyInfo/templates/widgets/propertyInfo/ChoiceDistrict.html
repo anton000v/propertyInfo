@@ -1,0 +1,227 @@
+{% load static %}
+
+
+{#<!-- Latest compiled and minified CSS -->#}
+{#<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/css/bootstrap-select.min.css">#}
+
+{#<link rel="stylesheet"#}
+{#      href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/css/bootstrap-select.min.css">#}
+
+{#<select id="ddlRegioni" name="ddlRegioni">#}
+{#    <option value="">Tutte le regioni</option>#}
+{#    <option value="14">Audio</option>#}
+{#    <option value="18">Центр</option>#}
+{#    <option value="19">CALABRIA</option>#}
+{#    <option value="16">CAMPANIA</option>#}
+{#    <option value="9">EMILIA ROMAGNA</option>#}
+{#    <option value="7">FRIULI VENEZIA GIULIA</option>#}
+{#    <option value="13">LAZIO</option>#}
+{#    <option value="8">LIGURIA</option>#}
+{#    <option value="3">LOMBARDIA</option>#}
+{#    <option value="12">MARCHE</option>#}
+{#    <option value="15">MOLISE</option>#}
+{#    <option value="22">NESSUNA (ESTERA)</option>#}
+{#    <option value="1">PIEMONTE</option>#}
+{#    <option value="17">PUGLIA</option>#}
+{#    <option value="21">SARDEGNA</option>#}
+{#    <option value="20">SICILIA</option>#}
+{#    <option value="10">TOSCANA</option>#}
+{#    <option value="5">TRENTINO ALTO ADIGE</option>#}
+{#    <option value="11">UMBRIA</option>#}
+{#    <option value="2">VALLE AOSTA</option>#}
+{#    <option value="6">VENETO</option>#}
+{#</select>#}
+{##}
+{#<select id="ddlProvince" name="ddlProvince">#}
+{#    <option value="">Tutte le province</option>#}
+{#    <optgroup label="ABRUZZO">#}
+{#        <option value="24">CH - CHIETI</option>#}
+{#        <option value="42">AQ - L'AQUILA</option>#}
+{#        <option value="66">PE - PESCARA</option>#}
+{#        <option value="88">TE - TERAMO</option>#}
+{#    </optgroup>#}
+{#    <optgroup label="BASILICATA">#}
+{#        <option value="52">MT - MATERA</option>#}
+{#        <option value="71">PZ - POTENZA</option>#}
+{#    </optgroup>#}
+{#    <optgroup label="CALABRIA">#}
+{#        <option value="23">CZ - CATANZARO</option>#}
+{#        <option value="26">CS - COSENZA</option>#}
+{#        <option value="28">KR - CROTONE</option>#}
+{#        <option value="75">RC - REGGIO DI CALABRIA</option>#}
+{#        <option value="101">VV - VIBO VALENTIA</option>#}
+{#    </optgroup>#}
+{#    <optgroup label="CAMPANIA">#}
+{#        <option value="8">AV - AVELLINO</option>#}
+{#        <option value="11">BN - BENEVENTO</option>#}
+{#        <option value="21">CE - CASERTA</option>#}
+{#        <option value="56">NA - NAPOLI</option>#}
+{#        <option value="81">SA - SALERNO</option>#}
+{#    </optgroup>#}
+{#    <optgroup label="EMILIA ROMAGNA">#}
+{#        <option value="14">BO - BOLOGNA</option>#}
+{#        <option value="31">FE - FERRARA</option>#}
+{#        <option value="34">FC - FORLI'-CESENA</option>#}
+{#        <option value="55">MO - MODENA</option>#}
+{#        <option value="62">PR - PARMA</option>#}
+{#        <option value="67">PC - PIACENZA</option>#}
+{#        <option value="74">RA - RAVENNA</option>#}
+{#        <option value="76">RE - REGGIO NELL'EMILIA</option>#}
+{#        <option value="78">RN - RIMINI</option>#}
+{#        <option value="104">RS - SAN MARINO</option>#}
+{#    </optgroup>#}
+{#    <!-- rest of the optgroupts skipped - there are 20 in totals -->#}
+{#</select>#}
+
+{#<link rel="stylesheet"#}
+{#      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.min.css">#}
+{#<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>#}
+<select name="{{ widget.name }}" id="{{ widget.name }}" class="selectpicker" data-live-search="true">
+    {% for name, value in widget.attrs.items %}{% if value is not False %}
+        {{ name }}{% if value is not True %}="{{ value|stringformat:'s' }}"{% endif %}{% endif %}
+    {% endfor %}
+
+    {% for group_name, group_choices, group_index in widget.optgroups %}
+        {% if group_name %}
+            <optgroup label="{{ group_name }}">
+        {% endif %}
+    {% for option in group_choices %}
+        {% include option.template_name with widget=option %}
+    {% endfor %}
+    {% if group_name %}
+        </optgroup>
+    {% endif %}
+    {% endfor %}
+</select>
+
+{#<!-- Latest compiled and minified JavaScript -->#}
+{#<script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/js/bootstrap-select.min.js"></script>#}
+{##}
+{#<!-- (Optional) Latest compiled and minified JavaScript translation files -->#}
+{#<script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/js/i18n/defaults-*.min.js"></script>#}
+
+
+{#<select name="micro_district" id="micro_district">#}
+{##}
+{#    <option value="nc" selected="">Не заполнено</option>#}
+{##}
+{##}
+{#    <optgroup label="Салтовка">#}
+{##}
+{##}
+{#        <option value="601">601</option>#}
+{##}
+{##}
+{#        <option value="602">602</option>#}
+{##}
+{##}
+{#        <option value="603">603</option>#}
+{##}
+{##}
+{#        <option value="604">604</option>#}
+{##}
+{##}
+{#        <option value="605">605</option>#}
+{##}
+{##}
+{#        <option value="606">606</option>#}
+{##}
+{##}
+{#        <option value="606a">606-A</option>#}
+{##}
+{##}
+{#        <option value="607">607</option>#}
+{##}
+{##}
+{#        <option value="608">608</option>#}
+{##}
+{##}
+{#        <option value="608">615</option>#}
+{##}
+{##}
+{#        <option value="608">616</option>#}
+{##}
+{##}
+{#        <option value="608">624</option>#}
+{##}
+{##}
+{#        <option value="608">625</option>#}
+{##}
+{##}
+{#        <option value="608">626</option>#}
+{##}
+{##}
+{#        <option value="608">656</option>#}
+{##}
+{##}
+{#        <option value="608">520</option>#}
+{##}
+{##}
+{#        <option value="608">522</option>#}
+{##}
+{##}
+{#        <option value="608">524</option>#}
+{##}
+{##}
+{#        <option value="608">531</option>#}
+{##}
+{##}
+{#        <option value="608">533</option>#}
+{##}
+{##}
+{#        <option value="608">535</option>#}
+{##}
+{##}
+{#        <option value="hl8">8 Хлебзавод</option>#}
+{##}
+{##}
+{#    </optgroup>#}
+{#    <optgroup label="Северная Салтовка">#}
+{##}
+{##}
+{#        <option value="ss1">Северная Салтовка - 1</option>#}
+{##}
+{##}
+{#        <option value="ss2">Северная Салтовка - 2</option>#}
+{##}
+{##}
+{#        <option value="ss3">Северная Салтовка - 3</option>#}
+{##}
+{##}
+{#        <option value="ss4">Северная Салтовка - 4</option>#}
+{##}
+{##}
+{#        <option value="ss5">Северная Салтовка - 5</option>#}
+{##}
+{##}
+{#    </optgroup>#}
+{#</select>#}
+{#<script src="{{ STATIC_URL }}js/jquery.js"></script>#}
+{#<script src="{{ STATIC_URL }}js/jquery.formset.js"></script>#}
+{#<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"#}
+{#        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"#}
+{#        crossorigin="anonymous"></script>#}
+{##}
+{#<script type="text/javascript">#}
+{#    var $sR = $("select#{{ widget.name }}");#}
+{#    var $sP = $("select#micro_district");#}
+{#    var $sPclone = $sP.clone();#}
+{##}
+{#    function updateProvinceList() {#}
+{#        var regName = $sR.find("option:selected").text();#}
+{#        if ($sR.val() > 0) {#}
+{#            $sP.find("optgroup").remove();#}
+{#            $sP.append($sPclone.find("optgroup[label='" + regName + "']").clone());#}
+{#        } else {#}
+{#            $sP.find("optgroup").remove();#}
+{#            $sP.append($sPclone.find("optgroup").clone());#}
+{#        }#}
+{#    }#}
+{##}
+{#    $("select#{{ widget.name }}").on("change", function (e) {#}
+{#        updateProvinceList();#}
+{#    });#}
+{##}
+{#</script>#}
+
+
