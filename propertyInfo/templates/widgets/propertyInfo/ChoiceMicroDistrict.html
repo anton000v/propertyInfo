@@ -1,0 +1,37 @@
+{#{% load static %}#}
+{#<!-- Latest compiled and minified CSS -->#}
+{#<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/css/bootstrap-select.min.css">#}
+{##}
+{#<!-- Latest compiled and minified JavaScript -->#}
+{#<script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/js/bootstrap-select.min.js"></script>#}
+{##}
+{#<!-- (Optional) Latest compiled and minified JavaScript translation files -->#}
+{#<script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/js/i18n/defaults-*.min.js"></script>#}
+
+<select name="{{ widget.name }}" id="{{ widget.name }}">
+    {% for name, value in widget.attrs.items %}{% if value is not False %}
+        {{ name }}{% if value is not True %}="{{ value|stringformat:'s' }}"{% endif %}{% endif %}{% endfor %}
+
+    {% for group_name, group_choices, group_index in widget.optgroups %}
+        {% if group_name %}
+            <optgroup label="{{ group_name }}">
+        {% endif %}
+    {% for option in group_choices %}
+        {% include option.template_name with widget=option %}
+    {% endfor %}
+    {% if group_name %}
+        </optgroup>
+    {% endif %}
+    {% endfor %}
+</select>
+
+
+{#<script src="{{ STATIC_URL }}js/jquery.js"></script>#}
+{#<script src="{{ STATIC_URL }}js/jquery.formset.js"></script>#}
+{#<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"#}
+{#        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"#}
+{#        crossorigin="anonymous"></script>#}
+
+
+
+

@@ -1,0 +1,250 @@
+{% extends 'propertyInfo/base.html' %}
+
+{% load static %}
+
+{% block content %}
+    <link rel="stylesheet" href="{% static 'css/propertyInfo/property_detail/property_detail.css' %}">
+    {#    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.3.0/ekko-lightbox.css">#}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.css"/>
+    {#        <script src="{% static "js/propertyInfo/gallery/jquery-ui-1.10.4.custom.min.js" %}"></script>#}
+    {#    <link rel="stylesheet" href="{% static "css/propertyInfo/gallery/zoom-visualizer.css" %}">#}
+    {#    <script src="{% static "js/propertyInfo/gallery/ZoomVisualizer.js" %}"></script>#}
+
+    <a class="btn btn-default" href="{% url 'property_edit' pk=building.pk %}"><span
+            class="glyphicon glyphicon-pencil"></span></a>
+    <h1>{{ building.name }}</h1>
+    {{ building.address }}
+    {{ building.get_administrativeDistrict_display }}
+    {#        <img src="{{ building.image.url}}">#}
+    {#    {% for current_way in building.wayFromMetro.all %}#}
+    {#        <p>{{ current_way.metroChoices }}</p>#}
+    {#    {% endfor %}#}
+    {% for currentImage in building.buildingImages.all %}
+
+        <p><img src="{{ MEDIA_URL }}/{{ currentImage.buildingImage.url }}" class="img-thumbnail"></p>
+
+    {% endfor %}
+
+    {% for currentImage in building.layoutImages.all %}
+
+        <p><img src="{{ MEDIA_URL }}/{{ currentImage.layoutImage.url }}" class="img-thumbnail"></p>
+
+    {% endfor %}
+
+
+    {#    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">#}
+
+    {#        <ol class="carousel-indicators">#}
+    {#            {% with iter_count=0 %}#}
+    {#            {% for currentImage in building.buildingImages.all %}#}
+    {#                <li data-target="#carouselExampleIndicators" data-slide-to="{{ forloop.counter }}"#}
+    {#                    {% if forloop.counter == 1 %}class="active"{% endif %}></li>#}
+    {##}
+    {#            {% endfor %}#}
+    {#                <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>#}
+    {#                <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>#}
+    {#                <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>#}
+    {#            {% endwith %}#}
+    {#        </ol>#}
+
+
+
+
+    {#        <div class=" carousel-inner">#}
+    {#            {% for currentImage in building.buildingImages.all %}#}
+    {#                <p>{{ forloop.counter }}</p>#}
+    {#                <div class="carousel-item {% if forloop.counter == 1 %} active {% endif %}">#}
+    {#                    <img class="d-block w-100" src="{{ MEDIA_URL }}/{{ currentImage.buildingImage.url }}"#}
+    {#                         alt="{{ forloop.counter }} фото планировки">#}
+    {#                </div>#}
+    {#            {% endfor %}#}
+    {#        </div>#}
+    {##}
+    {#        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">#}
+    {#            <span class="carousel-control-prev-icon" aria-hidden="true"></span>#}
+    {#            <span class="sr-only">Previous</span>#}
+    {#        </a>#}
+    {#        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">#}
+    {#            <span class="carousel-control-next-icon" aria-hidden="true"></span>#}
+    {#            <span class="sr-only">Next</span>#}
+    {#        </a>#}
+    {#    </div>#}
+
+
+
+
+    <section class="gallery-block grid-gallery">
+        <div class="container">
+            <div class="heading">
+                <h2>Grid Gallery</h2>
+            </div>
+            <div class="row">
+                {% for currentImage in building.buildingImages.all %}
+                    {#                    <li data-target="#carouselExampleIndicators" data-slide-to="{{ forloop.counter }}"#}
+                    {#                        {% if forloop.counter == 1 %}class="active"{% endif %}></li>#}
+                    <div class="col-md-6 col-lg-4 item" style="align-items: center">
+                        <a class="lightbox" href="{{ MEDIA_URL }}/{{ currentImage.buildingImage.url }}">
+                            <img class="img-fluid image scale-on-hover"
+                                 src="{{ MEDIA_URL }}/{{ currentImage.buildingImage.url }}"
+                                 style="width: 100%; height: 15vw; object-fit: cover;">
+                        </a>
+                    </div>
+                {% endfor %}
+                {#                <div class="col-md-6 col-lg-4 item">#}
+                {#                    <a class="lightbox" href="../img/image2.jpg">#}
+                {#                        <img class="img-fluid image scale-on-hover" src="../img/image2.jpg">#}
+                {#                    </a>#}
+                {#                </div>#}
+                {#                <div class="col-md-6 col-lg-4 item">#}
+                {#                    <a class="lightbox" href="../img/image3.jpg">#}
+                {#                        <img class="img-fluid image scale-on-hover" src="../img/image3.jpg">#}
+                {#                    </a>#}
+                {#                </div>#}
+                {#                <div class="col-md-6 col-lg-4 item">#}
+                {#                    <a class="lightbox" href="../img/image4.jpg">#}
+                {#                        <img class="img-fluid image scale-on-hover" src="../img/image4.jpg">#}
+                {#                    </a>#}
+                {#                </div>#}
+                {#                <div class="col-md-6 col-lg-4 item">#}
+                {#                    <a class="lightbox" href="../img/image5.jpg">#}
+                {#                        <img class="img-fluid image scale-on-hover" src="../img/image5.jpg">#}
+                {#                    </a>#}
+                {#                </div>#}
+                {#                <div class="col-md-6 col-lg-4 item">#}
+                {#                    <a class="lightbox" href="../img/image6.jpg">#}
+                {#                        <img class="img-fluid image scale-on-hover" src="../img/image6.jpg">#}
+                {#                    </a>#}
+                {#                </div>#}
+                {#                <div class="col-md-6 col-lg-4 item">#}
+                {#                    <a class="lightbox" href="../img/image7.jpg">#}
+                {#                        <img class="img-fluid image scale-on-hover" src="../img/image7.jpg">#}
+                {#                    </a>#}
+                {#                </div>#}
+                {#                <div class="col-md-6 col-lg-4 item">#}
+                {#                    <a class="lightbox" href="../img/image8.jpg">#}
+                {#                        <img class="img-fluid image scale-on-hover" src="../img/image8.jpg">#}
+                {#                    </a>#}
+                {#                </div>#}
+                {#                <div class="col-md-6 col-lg-4 item">#}
+                {#                    <a class="lightbox" href="../img/image9.jpg">#}
+                {#                        <img class="img-fluid image scale-on-hover" src="../img/image9.jpg">#}
+                {#                    </a>#}
+                {#            </div>#}
+            </div>
+        </div>
+    </section>
+
+
+
+
+{#    <section class="container">#}
+{#        <section class="row">#}
+{#            <div class="col-sm-12">#}
+{#                <div class="panel panel-default">#}
+{#                    <div class="panel-heading">Panel heading without title</div>#}
+{#                    <div class="panel-body">#}
+{#                        <div role="tabpanel">#}
+{##}
+{#                            <!-- Nav tabs -->#}
+{#                            <ul id="myTab" class="nav nav-tabs" role="tablist">#}
+{#                                <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab"#}
+{#                                                                          data-toggle="tab">Home</a></li>#}
+{#                                <li role="presentation"><a href="#profile" aria-controls="profile" role="tab"#}
+{#                                                           data-toggle="tab">Profile</a></li>#}
+{#                                <li role="presentation"><a href="#messages" aria-controls="messages" role="tab"#}
+{#                                                           data-toggle="tab">Messages</a></li>#}
+{#                                <li role="presentation"><a href="#settings" aria-controls="settings" role="tab"#}
+{#                                                           data-toggle="tab">Settings</a></li>#}
+{#                            </ul>#}
+{##}
+{#                            <!-- Tab panes -->#}
+{#                            <div class="tab-content">#}
+{#                                <div role="tabpanel" class="tab-pane active" id="home"><img#}
+{#                                        src="http://dummyimage.com/1280x1024/000/fff&text=Home" class="img-responsive">#}
+{#                                </div>#}
+{#                                <div role="tabpanel" class="tab-pane" id="profile"><img#}
+{#                                        src="http://dummyimage.com/1280x1024/000/fff&text=Profile"#}
+{#                                        class="img-responsive"></div>#}
+{#                                <div role="tabpanel" class="tab-pane" id="messages"><img#}
+{#                                        src="http://dummyimage.com/1280x1024/000/fff&text=Messages"#}
+{#                                        class="img-responsive"></div>#}
+{#                                <div role="tabpanel" class="tab-pane" id="settings"><img#}
+{#                                        src="http://dummyimage.com/1280x1024/000/fff&text=Settings"#}
+{#                                        class="img-responsive"></div>#}
+{#                            </div>#}
+{##}
+{#                        </div>#}
+{#                    </div>#}
+{#                </div>#}
+{#            </div>#}
+{#        </section>#}
+{#    </section>#}
+{##}
+{##}
+{##}
+{#    <div class="card">#}
+{#        <div class="card-header ">#}
+{#            <a class=" card-link" data-toggle="collapse" href="#collapseB">#}
+{#                Filter features by#}
+{#            </a>#}
+{#            <ul class="nav nav-tabs" id="features">#}
+{#                <li class=" card-link"><a class="nav-link" data-toggle="tab" href="#tab-1" role="tab">Tab 1</a></li>#}
+{#                <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#tab-2" role="tab">Tab 2</a></li>#}
+{#                <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#tab-3" role="tab">Tab 3</a></li>#}
+{#            </ul>#}
+{#            <div id="collapseB" class="card collapse" data-parent="#accordion3">#}
+{#                <div class="card-block">#}
+{#                    <div class="tab-content">#}
+{#                        <div class="tab-pane active" id="tab-1">#}
+{#                            <h4 class="card-title">Tab 1</h4>#}
+{#                            <p class="card-text">Libero at quibusdam autem magnam necessitatibus, ullam nisi quo,#}
+{#                                architecto molestias reprehenderit neque porro velit deleniti ipsa mollitia pariatur!#}
+{#                                Expedita, eius repudiandae.</p>#}
+{#                        </div>#}
+{#                        <div class="tab-pane" id="tab-2">#}
+{#                            <h4 class="card-title">Tab 2</h4>#}
+{#                            <p class="card-text">Magni autem a perferendis tempore perspiciatis aspernatur sapiente fuga#}
+{#                                deserunt dignissimos consequuntur maiores aliquid hic, in pariatur, officiis repellat#}
+{#                                voluptatum provident blanditiis.</p>#}
+{#                        </div>#}
+{#                        <div class="tab-pane" id="tab-3">#}
+{#                            <h4 class="card-title">Tab 3</h4>#}
+{#                            <p class="card-text">Odio, facilis, vel eum nam architecto maxime consequuntur consectetur#}
+{#                                et qui eveniet alias minus provident suscipit delectus odit cupiditate similique fuga#}
+{#                                vero!</p>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                </div>#}
+{#            </div>#}
+{##}
+{#        </div>#}
+{#    </div>#}
+{% endblock %}
+
+{% block custom_js %}
+    {#    <script src="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.3.0/ekko-lightbox.js"></script>#}
+    {#    <script>#}
+    {#        $(document).on('click', '[data-toggle="lightbox"]', function (event) {#}
+    {#            event.preventDefault();#}
+    {#            $(this).ekkoLightbox();#}
+    {#        });#}
+    {#    </script>#}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.js"></script>
+    <script>
+        baguetteBox.run('.grid-gallery', {animation: 'slideIn'});
+    </script>
+    <script>
+        $('#myTab').tabCollapse();
+    </script>
+
+    <script>
+        $(document).ready(function () {
+
+            $('.nav-link').on('click', function () {
+                if (!$('#collapseB').hasClass('show')) {
+                    $('#collapseB').collapse('toggle')
+                }
+            })
+        });
+    </script>
+{% endblock %}
