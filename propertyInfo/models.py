@@ -2,7 +2,7 @@ from django.db import models
 
 from multiselectfield import MultiSelectField
 from django.contrib.auth.models import User
-from django.utils.text import slugify
+from django.shortcuts import reverse
 import propertyInfo.choices as choices
 
 
@@ -14,145 +14,35 @@ class NewBuilding(models.Model):
     # --------------------default values:
     NOT_COMPLETED = 'nc'
     DEFAULT = 'Не заполнено'
-    HUMAN_ORIENTED_DEFAULT = 'Упс, пока не можем найти'
 
-    # -------------selection items for field 'class':
-    ECONOM = 'ec'
-    COMFORT = 'co'
-    BUSINESS = 'bu'
-    PREMIUM = 'pr'
-    ELITE = 'el'
-    DELUXE = 'de'
-    TOWNHOUSE = 'to'
 
-    THE_CLASS_CHOICES = (
-        (NOT_COMPLETED, DEFAULT),
-        (ECONOM, 'Эконом'),
-        (COMFORT, 'Комфорт'),
-        (BUSINESS, 'Бизнес'),
-        (PREMIUM, 'Премиум'),
-        (ELITE, 'Элит'),
-        (DELUXE, 'Делюкс'),
-        (TOWNHOUSE, 'Townhouse')
-    )
 
-    # -------------selection items for field 'administrativeDistrict'
-
-    MOSCOVSKII = 'mo'
-    KIEVSKII = 'ki'
-    SHEVCHENCOVSKII = 'sh'
-    SLOBODSKOI = 'sl'
-    OSNOVYANSKII = 'os'
-    NEMISHLYANSKII = 'ne'
-    HOLODNOGORSKII = 'ho'
-    NOVOBAVARSKII = 'no'
-    INDUSTRIALNII = 'in'
-
-    THE_ADMINISTRATIVE_DISTRICT_CHOICES = (
-        (NOT_COMPLETED, DEFAULT),
-        (MOSCOVSKII, 'Московский'),
-        (KIEVSKII, 'Киевский'),
-        (SHEVCHENCOVSKII, 'Шевченковский'),
-        (SLOBODSKOI, 'Слободской'),
-        (OSNOVYANSKII, 'Основянский'),
-        (NEMISHLYANSKII, 'Немышлянский'),
-        (HOLODNOGORSKII, 'Холодногорский'),
-        (NOVOBAVARSKII, 'Новобоварский'),
-        (INDUSTRIALNII, 'Индустриальный')
-    )
-
-    # -------------Selection items for field 'heating':
-    CENTRAL = 'ce'
-    AUTONOMOUS_GAS = 'ag'
-    AUTONOMOUS_ELECTRIC = 'ae'
-    AUTONOMOUS_AT_HOME = 'ah'
-
-    THE_HEATING_CHOICES = (
-        (NOT_COMPLETED, DEFAULT),
-        (CENTRAL, 'Центральное'),
-        (AUTONOMOUS_GAS, 'Автономное газовое'),
-        (AUTONOMOUS_ELECTRIC, 'Автономное электрическое'),
-        (AUTONOMOUS_AT_HOME, 'Автономное на дом'),
-
-    )
-
-    # -------------Selection items for field 'parking':
-    UNDERGROUND = 'un'
-    GROUND = 'gr'
-    GUEST = 'gu'
-    BIKE_PARKING = 'bk'
-
-    THE_PARKING_CHOICES = (
-        (NOT_COMPLETED, DEFAULT),
-        (UNDERGROUND, 'Подземный'),
-        (GROUND, 'Наземный'),
-        (GUEST, 'Гостевой'),
-        (BIKE_PARKING, 'Велопарковки')
-    )
-
-    # ------------Selection items for field 'Walls type':
-    BRICK = 'br'
-    GAS_BLOCK = 'gb'
-    PORCELAIN_BLOCK = 'pb'
-
-    THE_WALLS_TYPE_CHOICES = (
-        (NOT_COMPLETED, DEFAULT),
-        (BRICK, 'Кирпич'),
-        (GAS_BLOCK, 'Газоблок'),
-        (PORCELAIN_BLOCK, 'Керамоблок')
-
-    )
-
-    # -----------Selection items for field 'constructionTechnology':
-    BRICKWORK = 'br'
-    MONOLITHIC_FRAME = 'mf'
-    PANEL = 'pa'
-
-    THE_CONSTRUCTION_TECHNOLOGY_CHOICES = (
-        (NOT_COMPLETED, DEFAULT),
-        (BRICKWORK, 'Кирпичная кладка'),
-        (MONOLITHIC_FRAME, 'Монолитно-каркасная'),
-        (PANEL, 'Панельная')
-
-    )
-    # -----------Selection items for field 'warming':
-    STYROFOAM = 'st'
-    EXPANDED_POLYSTYRENE = 'ep'
-    MINERAL_WOOL = 'mw'
-    OTHER = 'ot'
-
-    THE_WARMING_CHOICES = (
-        (NOT_COMPLETED, DEFAULT),
-        (STYROFOAM, 'Пенопласт'),
-        (EXPANDED_POLYSTYRENE, 'Пенополистирол'),
-        (MINERAL_WOOL, 'Минеральная вата'),
-        (OTHER, 'Другое')
-    )
 
     name = models.CharField(max_length=200, verbose_name=u'Название', default=1)
     # messageG = forms.CharField(widget=forms.Textarea, label='lolkek')
     address = models.CharField(max_length=200, verbose_name=u"Адрес", default=1)  # адресс
-    administrativeDistrict = models.CharField(max_length=2, choices=THE_ADMINISTRATIVE_DISTRICT_CHOICES,
+    administrativeDistrict = models.CharField(max_length=2, choices=choices.THE_ADMINISTRATIVE_DISTRICT_CHOICES,
                                               default=NOT_COMPLETED,
                                               verbose_name=u"Административный район")  #
     district = models.CharField(max_length=4, choices=choices.DISTRICT_CHOICES,
                                 default=choices.NOT_COMPLETED,
                                 verbose_name=u"Район")  # )
-    micro_district = models.CharField(max_length=4)  # микрорайон
+    micro_district = models.CharField(max_length=4, choices=choices.MYCRO_DISTRICT_CHOICES, default=NOT_COMPLETED,
+                                      verbose_name="Микрорайон")  # микрорайон
     location = models.CharField(max_length=200, verbose_name=u"Расположение", default=1)  #
     developer = models.CharField(max_length=100, verbose_name=u"Застройщик", default=1)  #
-    theClass = models.CharField(max_length=2, choices=THE_CLASS_CHOICES, default=NOT_COMPLETED,
+    theClass = models.CharField(max_length=2, choices=choices.THE_CLASS_CHOICES, default=NOT_COMPLETED,
                                 verbose_name=u"Класс")
     numberOfStoreys = models.PositiveSmallIntegerField(verbose_name=u"Этажность", default=1)  #
     numberOfBuildings = models.PositiveSmallIntegerField(verbose_name=u"Количество домов", default=1)  #
     numberOfSectionsOrEntrances = models.CharField(max_length=100, verbose_name=u"Количество секций/подьездов",
-                                                   default=1)  #
-    constructionTechnology = models.CharField(max_length=2, choices=THE_CONSTRUCTION_TECHNOLOGY_CHOICES,
+                                                   default=1)
+    constructionTechnology = models.CharField(max_length=2, choices=choices.THE_CONSTRUCTION_TECHNOLOGY_CHOICES,
                                               default=NOT_COMPLETED,
                                               verbose_name=u"Технология строительства")
-    wallsType = models.CharField(max_length=2, choices=THE_WALLS_TYPE_CHOICES, default=NOT_COMPLETED,
+    wallsType = models.CharField(max_length=2, choices=choices.THE_WALLS_TYPE_CHOICES, default=NOT_COMPLETED,
                                  verbose_name=u"Стены")
-    warming = models.CharField(max_length=2, choices=THE_WARMING_CHOICES, default=NOT_COMPLETED,
+    warming = models.CharField(max_length=2, choices=choices.THE_WARMING_CHOICES, default=NOT_COMPLETED,
                                verbose_name=u"Утепление")  #
     roomHeight = models.PositiveSmallIntegerField(verbose_name=u"Высота помещений", default=1)  #
     numberOfApartmentsInTheHouse = models.PositiveSmallIntegerField(verbose_name=u"Кол-во квартир в доме", default=1)  #
@@ -171,27 +61,29 @@ class NewBuilding(models.Model):
     numberOfApartmensPerFloor = models.PositiveSmallIntegerField(verbose_name=u"Кол-во квартир на этаже", default=1)  #
     commercialPremises = models.PositiveSmallIntegerField(verbose_name=u"Коммерческие помещения",
                                                           null=True, default=1)  # пишешь только этаж
-    heating = models.CharField(max_length=2, choices=THE_HEATING_CHOICES, default=NOT_COMPLETED,
+    heating = models.CharField(max_length=2, choices=choices.THE_HEATING_CHOICES, default=NOT_COMPLETED,
                                verbose_name=u"Отопление")
     gasification = models.BooleanField(verbose_name=u"Газификация", default=1)
     elevator = models.CharField(max_length=50, verbose_name=u"Лифт", default=1)  #
-    parking = MultiSelectField(choices=THE_PARKING_CHOICES, default=NOT_COMPLETED,
+    parking = MultiSelectField(choices=choices.THE_PARKING_CHOICES, default=NOT_COMPLETED,
                                verbose_name=u"Паркинг")
     numberOfParkingSpaces = models.SmallIntegerField(verbose_name=u"Кол-во машиномест", default=1)
     price = models.SmallIntegerField(verbose_name=u"Цена за м2 у застройщика", default=1)
     completionDate = models.SmallIntegerField(verbose_name=u"Сдан и принят в эксплуатацию", default=1)
     description = models.TextField(verbose_name=u"Описание", default=1)
 
-    slug = models.SlugField(max_length=40, default='def')  # editable = False
+    slug = models.SlugField(max_length=150, unique=True, default='def')  # editable = False
 
-    def save(self, *args, **kwargs):
-        _slug = '%s-%s' % (self.name, self.address)
-        self.slug = slugify(_slug)
-        super(NewBuilding, self).save(*args, **kwargs)
+    # def save(self, *args, **kwargs):
+    #     _slug = '%s-%s' % (self.name, self.address)
+    #     self.slug = slugify(_slug)
+    #     super(NewBuilding, self).save(*args, **kwargs)
+
+    def get_absolute_url(self):
+        return reverse('property_detail',kwargs={'slug': self.slug})
 
     def __str__(self):
         return self.address
-
 
 
 class buildingImages(models.Model):

@@ -8,10 +8,9 @@ from django.urls import include
 
 urlpatterns = [
     path('', views.main_screen),
-    # path('example/', views.example),
-    path('property/<int:pk>/', views.property_detail, name='property_detail'),
-    path('property/new/', views.property_new, name='property_new'),
-    path('property/<int:pk>/edit/', views.property_edit, name='property_edit'),
+    path('property/new/', views.PropertyCreate.as_view(), name='property_new'),
+    path('property/<str:slug>/', views.PropertyDetail.as_view(), name='property_detail'),
+    path('property/<str:slug>/edit/', views.PropertyEdit.as_view(), name='property_edit'),
     # path('update_content/', views.update_content, name='update_content'),
 
 ]

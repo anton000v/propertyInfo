@@ -1,7 +1,7 @@
 {% extends 'propertyInfo/base.html' %}
 
 {% block title %}
-    Properties list
+    Properties List
 {% endblock %}
 
 
@@ -252,7 +252,7 @@
                                 <li class="list-group-item">Район: {{ building.get_district_display }}</li>
                                 <li class="list-group-item">Застройщик: {{ building.developer }}</li>
                             </ul>
-                            <a href="{% url 'property_detail' pk=building.pk %}"
+                            <a href="{{ building.get_absolute_url }}"
                                class="stretched-link text-danger">Открыть</a>
                         </div>
                     </div>

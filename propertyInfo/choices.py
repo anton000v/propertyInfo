@@ -1,7 +1,123 @@
+# ----------Default values:
 NOT_COMPLETED = 'nc'
 DEFAULT = 'Не заполнено'
+HUMAN_ORIENTED_DEFAULT = 'Упс, пока не можем найти'
 
-# ----------CENTER
+# -------------selection items for field 'class':
+ECONOM = 'ec'
+COMFORT = 'co'
+BUSINESS = 'bu'
+PREMIUM = 'pr'
+ELITE = 'el'
+DELUXE = 'de'
+TOWNHOUSE = 'to'
+
+THE_CLASS_CHOICES = (
+    (NOT_COMPLETED, DEFAULT),
+    (ECONOM, 'Эконом'),
+    (COMFORT, 'Комфорт'),
+    (BUSINESS, 'Бизнес'),
+    (PREMIUM, 'Премиум'),
+    (ELITE, 'Элит'),
+    (DELUXE, 'Делюкс'),
+    (TOWNHOUSE, 'Townhouse')
+)
+
+# -------------selection items for field 'administrativeDistrict'
+
+MOSCOVSKII = 'mo'
+KIEVSKII = 'ki'
+SHEVCHENCOVSKII = 'sh'
+SLOBODSKOI = 'sl'
+OSNOVYANSKII = 'os'
+NEMISHLYANSKII = 'ne'
+HOLODNOGORSKII = 'ho'
+NOVOBAVARSKII = 'no'
+INDUSTRIALNII = 'in'
+
+THE_ADMINISTRATIVE_DISTRICT_CHOICES = (
+    (NOT_COMPLETED, DEFAULT),
+    (MOSCOVSKII, 'Московский'),
+    (KIEVSKII, 'Киевский'),
+    (SHEVCHENCOVSKII, 'Шевченковский'),
+    (SLOBODSKOI, 'Слободской'),
+    (OSNOVYANSKII, 'Основянский'),
+    (NEMISHLYANSKII, 'Немышлянский'),
+    (HOLODNOGORSKII, 'Холодногорский'),
+    (NOVOBAVARSKII, 'Новобоварский'),
+    (INDUSTRIALNII, 'Индустриальный')
+)
+
+# -------------Selection items for field 'heating':
+CENTRAL = 'ce'
+AUTONOMOUS_GAS = 'ag'
+AUTONOMOUS_ELECTRIC = 'ae'
+AUTONOMOUS_AT_HOME = 'ah'
+
+THE_HEATING_CHOICES = (
+    (NOT_COMPLETED, DEFAULT),
+    (CENTRAL, 'Центральное'),
+    (AUTONOMOUS_GAS, 'Автономное газовое'),
+    (AUTONOMOUS_ELECTRIC, 'Автономное электрическое'),
+    (AUTONOMOUS_AT_HOME, 'Автономное на дом'),
+
+)
+
+# -------------Selection items for field 'parking':
+UNDERGROUND = 'un'
+GROUND = 'gr'
+GUEST = 'gu'
+BIKE_PARKING = 'bk'
+
+THE_PARKING_CHOICES = (
+    (NOT_COMPLETED, DEFAULT),
+    (UNDERGROUND, 'Подземный'),
+    (GROUND, 'Наземный'),
+    (GUEST, 'Гостевой'),
+    (BIKE_PARKING, 'Велопарковки')
+)
+
+# ------------Selection items for field 'Walls type':
+BRICK = 'br'
+GAS_BLOCK = 'gb'
+PORCELAIN_BLOCK = 'pb'
+
+THE_WALLS_TYPE_CHOICES = (
+    (NOT_COMPLETED, DEFAULT),
+    (BRICK, 'Кирпич'),
+    (GAS_BLOCK, 'Газоблок'),
+    (PORCELAIN_BLOCK, 'Керамоблок')
+
+)
+
+# -----------Selection items for field 'constructionTechnology':
+BRICKWORK = 'br'
+MONOLITHIC_FRAME = 'mf'
+PANEL = 'pa'
+
+THE_CONSTRUCTION_TECHNOLOGY_CHOICES = (
+    (NOT_COMPLETED, DEFAULT),
+    (BRICKWORK, 'Кирпичная кладка'),
+    (MONOLITHIC_FRAME, 'Монолитно-каркасная'),
+    (PANEL, 'Панельная')
+
+)
+# -----------Selection items for field 'warming':
+STYROFOAM = 'st'
+EXPANDED_POLYSTYRENE = 'ep'
+MINERAL_WOOL = 'mw'
+OTHER = 'ot'
+
+THE_WARMING_CHOICES = (
+    (NOT_COMPLETED, DEFAULT),
+    (STYROFOAM, 'Пенопласт'),
+    (EXPANDED_POLYSTYRENE, 'Пенополистирол'),
+    (MINERAL_WOOL, 'Минеральная вата'),
+    (OTHER, 'Другое')
+)
+
+# ----------------------------DISTRICT CHOICES:
+# ----------CENTER:
 CENTER = 'ce'
 GOSPROM = 'gos'
 NAGORNII = 'nag'
@@ -197,6 +313,73 @@ DISTRICT_CHOICES = [
         (MASELSKOGO_METRO, 'Масельского метро'),
         (ARMEYSKAYA_METRO, 'Армейская метро'),
         (MOSKOVSKII_PROSPECT_METRO, 'Московский Проспект метро'),
+    )
+     ),
+]
+
+# ----------------microdistricts of 'SEVARNAYA SALTOVKA'
+SS1 = 'ss1'
+SS2 = 'ss2'
+SS3 = 'ss3'
+SS4 = 'ss4'
+SS5 = 'ss5'
+# ----------------microdistricts of 'SALTOVKA'
+m601 = '601'
+m602 = '602'
+m603 = '603'
+m604 = '604'
+m605 = '605'
+m606 = '606'
+m606A = '606a'
+m607 = '607'
+m608 = '608'
+m615 = '608'
+m616 = '608'
+m624 = '608'
+m625 = '608'
+m626 = '608'
+m656 = '608'
+m520 = '608'
+m522 = '608'
+m524 = '608'
+m531 = '608'
+m533 = '608'
+m535 = '608'
+HLEBZAVOD_8 = 'hl8'
+
+MYCRO_DISTRICT_CHOICES = [
+    (NOT_COMPLETED, DEFAULT),
+    ('Салтовка', (
+        (m601, '601'),
+        (m602, '602'),
+        (m603, '603'),
+        (m604, '604'),
+        (m605, '605'),
+        (m606, '606'),
+        (m606A, '606-A'),
+        (m607, '607'),
+        (m608, '608'),
+        (m615, '615'),
+        (m616, '616'),
+        (m624, '624'),
+        (m625, '625'),
+        (m626, '626'),
+        (m656, '656'),
+        (m520, '520'),
+        (m522, '522'),
+        (m524, '524'),
+        (m531, '531'),
+        (m533, '533'),
+        (m535, '535'),
+        (HLEBZAVOD_8, '8 Хлебзавод'),
+    )
+     ),
+    ('Северная Салтовка', (
+        (SS1, 'Северная Салтовка - 1'),
+        (SS2, 'Северная Салтовка - 2'),
+        (SS3, 'Северная Салтовка - 3'),
+        (SS4, 'Северная Салтовка - 4'),
+        (SS5, 'Северная Салтовка - 5'),
     )
      ),
 ]
