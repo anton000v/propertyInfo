@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 """
 
 import os
+import dj_database_url
 
 # from django.conf.global_settings import
 
@@ -24,10 +25,13 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'nz1hyfnav@&-oubv*)0^wv%*vvwox30a35nf$_99^uk*vts2^v'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'qwerty221b.pythonanywhere.com']
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'propertyinfokh.herokuapp.com']
 
+# SECRET_KEY = os.environ.get('SECRET_KEY')
+EMAIL_HOST_USER = os.environ.get('propertyinfokh@gmail.com')
+EMAIL_HOST_PASSWORD = os.environ.get('propertyInfopassword')
 # Application definition
 
 INSTALLED_APPS = [
@@ -42,6 +46,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'propertyInfo',
+    'whitenoise.runserver_nostatic',
     # 'crispy_forms',
     # 'dynamic_formsets',
     # 'jquery',
@@ -56,7 +61,11 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
+
+#  For heroku:
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 ROOT_URLCONF = 'propertyInfoEngine.urls'
 
@@ -94,6 +103,10 @@ DATABASES = {
         # 'PORT': 5432,
     }
 }
+#  For Heroku:
+db_from_env = dj_database_url.config(conn_max_age=600)
+DATABASES['default'].update(db_from_env)
+
 
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators
@@ -134,3 +147,8 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'propertyInfo/static')
 
 MEDIA_URL = 'propertyInfo/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'propertyInfo/media')
+
+#For heroku:
+# location where you will store your static files
+STATICFILES_DIRS = [os.path.join(BASE_DIR,'propertyInfo/static')
+]
