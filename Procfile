@@ -1,0 +1,1 @@
+web: gunicorn <propertyInfoEngine>.wsgi --log-file -

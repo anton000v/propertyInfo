@@ -1,6 +1,8 @@
 *.pyc
 *~
-__pycache__
+*.log
+*.pot
+__pycache__/
 myvenv
 db.sqlite3
 /static
