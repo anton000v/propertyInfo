@@ -14,8 +14,8 @@ import os
 import dj_database_url
 import django_heroku
 
-# Activate Django-Heroku.
-django_heroku.settings(locals())
+# # Activate Django-Heroku.
+# django_heroku.settings(locals())
 
 # from django.conf.global_settings import
 
@@ -50,7 +50,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'propertyInfo',
-    'whitenoise.runserver_nostatic',
+    # 'whitenoise.runserver_nostatic',
     # 'crispy_forms',
     # 'dynamic_formsets',
     # 'jquery',
@@ -65,11 +65,11 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',
+    # 'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 #  For heroku:
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+# STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 ROOT_URLCONF = 'propertyInfoEngine.urls'
 
@@ -99,21 +99,21 @@ WSGI_APPLICATION = 'propertyInfoEngine.wsgi.application'
 DATABASES = {
     'default': {
         # SQLITE settings:
-        # 'ENGINE': 'django.db.backends.sqlite3',
-        # 'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
 
         # Postgresql settings:
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'propertyInfo_database',
-        'USER': "djprojectuser",
-        'PASSWORD': 'mypassword',
-        'HOST': '127.0.0.1',
-        'PORT': 5432,
+        # 'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        # 'NAME': 'propertyInfo_database',
+        # 'USER': "djprojectuser",
+        # 'PASSWORD': 'mypassword',
+        # 'HOST': '127.0.0.1',
+        # 'PORT': 5432,
     }
 }
 #  For Heroku:
-db_from_env = dj_database_url.config(conn_max_age=600)
-DATABASES['default'].update(db_from_env)
+# db_from_env = dj_database_url.config(conn_max_age=600)
+# DATABASES['default'].update(db_from_env)
 
 
 # Password validation

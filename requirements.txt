@@ -2,6 +2,7 @@ dj-database-url==0.5.0
 Django==2.2.5
 django-cleanup==4.0.0
 django-filer==1.5.0
+django-heroku==0.3.1
 django-js-asset==1.2.2
 django-mptt==0.10.0
 django-multiselectfield==0.1.11
@@ -14,4 +15,3 @@ psycopg2==2.8.3
 pytz==2019.2
 sqlparse==0.3.0
 Unidecode==1.0.23
-whitenoise==5.0.1
