@@ -25,7 +25,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'nz1hyfnav@&-oubv*)0^wv%*vvwox30a35nf$_99^uk*vts2^v'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'propertyinfokh.herokuapp.com']
 
@@ -94,13 +94,17 @@ WSGI_APPLICATION = 'propertyInfoEngine.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-        # 'NAME': 'propertyInfo_db',
-        # 'USER': "djprojectuser",
-        # 'PASSWORD': 'mypassword',
-        # 'HOST': '127.0.0.1',
-        # 'PORT': 5432,
+        # SQLITE settings:
+        # 'ENGINE': 'django.db.backends.sqlite3',
+        # 'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+
+        # Postgresql settings:
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'propertyInfo_database',
+        'USER': "djprojectuser",
+        'PASSWORD': 'mypassword',
+        'HOST': '127.0.0.1',
+        'PORT': 5432,
     }
 }
 #  For Heroku:
@@ -150,5 +154,5 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'propertyInfo/media')
 
 #For heroku:
 # location where you will store your static files
-STATICFILES_DIRS = [os.path.join(BASE_DIR,'propertyInfo/static')
-]
+# STATICFILES_DIRS = [os.path.join(BASE_DIR,'propertyInfo/static')
+# ]
