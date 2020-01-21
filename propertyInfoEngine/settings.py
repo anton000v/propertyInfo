@@ -12,6 +12,10 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 
 import os
 import dj_database_url
+import django_heroku
+
+# Activate Django-Heroku.
+django_heroku.settings(locals())
 
 # from django.conf.global_settings import
 
@@ -30,8 +34,8 @@ DEBUG = True
 ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'propertyinfokh.herokuapp.com']
 
 # SECRET_KEY = os.environ.get('SECRET_KEY')
-EMAIL_HOST_USER = os.environ.get('propertyinfokh@gmail.com')
-EMAIL_HOST_PASSWORD = os.environ.get('propertyInfopassword')
+# EMAIL_HOST_USER = os.environ.get('propertyinfokh@gmail.com')
+# EMAIL_HOST_PASSWORD = os.environ.get('propertyInfopassword')
 # Application definition
 
 INSTALLED_APPS = [
