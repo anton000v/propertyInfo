@@ -22,7 +22,7 @@ class NewBuildingForm(forms.ModelForm):
                                  widget=ChoiceDistrictWidget
                                  )
 
-    micro_district = forms.ChoiceField(choices=choices.MYCRO_DISTRICT_CHOICES,
+    micro_district = forms.ChoiceField(choices=choices.MICRO_DISTRICT_DEFAULT_CHOICE,
                                        label=u"Микрорайон", initial=choices.NOT_COMPLETED,
                                        widget=ChoiceMicroDistrictWidget
                                        )

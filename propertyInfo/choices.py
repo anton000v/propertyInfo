@@ -208,9 +208,6 @@ MASELSKOGO_METRO = 'mam'
 ARMEYSKAYA_METRO = 'arm'
 MOSKOVSKII_PROSPECT_METRO = 'mpm'
 
-# example_dict = {'Center': 'cent', 'Novie Doma': 3}
-
-
 DISTRICT_CHOICES = [
     (NOT_COMPLETED, DEFAULT),
     ('Центр', (
@@ -347,39 +344,88 @@ m533 = '608'
 m535 = '608'
 HLEBZAVOD_8 = 'hl8'
 
-MYCRO_DISTRICT_CHOICES = [
+MICRO_DISTRICT_DEFAULT_CHOICE = [
     (NOT_COMPLETED, DEFAULT),
-    ('Салтовка', (
-        (m601, '601'),
-        (m602, '602'),
-        (m603, '603'),
-        (m604, '604'),
-        (m605, '605'),
-        (m606, '606'),
-        (m606A, '606-A'),
-        (m607, '607'),
-        (m608, '608'),
-        (m615, '615'),
-        (m616, '616'),
-        (m624, '624'),
-        (m625, '625'),
-        (m626, '626'),
-        (m656, '656'),
-        (m520, '520'),
-        (m522, '522'),
-        (m524, '524'),
-        (m531, '531'),
-        (m533, '533'),
-        (m535, '535'),
-        (HLEBZAVOD_8, '8 Хлебзавод'),
-    )
-     ),
-    ('Северная Салтовка', (
-        (SS1, 'Северная Салтовка - 1'),
-        (SS2, 'Северная Салтовка - 2'),
-        (SS3, 'Северная Салтовка - 3'),
-        (SS4, 'Северная Салтовка - 4'),
-        (SS5, 'Северная Салтовка - 5'),
-    )
-     ),
 ]
+MICRO_DISTRICT_SALTOVKA_CHOICES = [
+    (m601, '601'),
+    (m602, '602'),
+    (m603, '603'),
+    (m604, '604'),
+    (m605, '605'),
+    (m606, '606'),
+    (m606A, '606-A'),
+    (m607, '607'),
+    (m608, '608'),
+    (m615, '615'),
+    (m616, '616'),
+    (m624, '624'),
+    (m625, '625'),
+    (m626, '626'),
+    (m656, '656'),
+    (m520, '520'),
+    (m522, '522'),
+    (m524, '524'),
+    (m531, '531'),
+    (m533, '533'),
+    (m535, '535'),
+    (HLEBZAVOD_8, '8 Хлебзавод'),
+]
+
+MICRO_DISTRICT_SEVERNAYA_SALTOVKA_CHOICES = [
+    (SS1, 'Северная Салтовка - 1'),
+    (SS2, 'Северная Салтовка - 2'),
+    (SS3, 'Северная Салтовка - 3'),
+    (SS4, 'Северная Салтовка - 4'),
+    (SS5, 'Северная Салтовка - 5'),
+]
+
+# --------------------- Metro choices
+SALTOVSKAYA_LINE = 'sl'
+ALEXEEVSKAYA_LINE = 'al'
+HOLODNOGORSKAYA_LINE = 'hl'
+
+# --------------------- Saltovskaya Line
+GEROYEV_TRUDA = 'gtr'
+STUDENCHESKAYA = 'stk'
+AKADEMINA_PAVLOVA = 'akp'
+AKADEMINA_BARABASHOVA = 'akb'
+KIEVSKAYA = 'kie'
+PUSHKINSKAYA = 'psh'
+UNIVERSITET = 'uni'
+ISTORICHESKII_MUZEI = 'ism'
+
+# ----------------------- Alekseevskaya Line
+POBEDA = 'pob'
+ALEXEEVSKAYA = 'ale'
+AVGUSTA_23 = '23a'
+BOTANICHESKII_SAD = 'bts'
+NAUCHNAYA = 'nau'
+GOSPROM = 'gos'
+ARCHITECTORA_BIKETOVA = 'arb'
+ZASCHITNIKOV_UKRAINI = 'zau'
+METROSTROITELEY = 'met'
+
+# ----------------------- Holodnogorsko zavodskaya Line
+HOLODNAYA_GORA = 'hog'
+UJNII_VOKZAL = 'ujv'
+CENTRALNII_RINOK = 'cer'
+PLOSHAD_KONSTITUCII = 'plk'
+PROSPECT_GAGARINA = 'prg'
+SPORTIVNAYA = 'spo'
+ZAVOD_IMENI_MALISHEVA = 'zim'
+MOSKOVSKII_PROSPECT = 'mop'
+DVOREC_SPORTA = 'dvs'
+ARMEISKAYA = 'arm'
+IMENI_MASELSKOGO = 'imm'
+TRAKTORNII_ZAVOD = 'trz'
+INDUSTRIALNAYA = 'ind'
+
+# --------------------- Type of movement choices
+ON_FOOT = 'of'
+BY_CAR = 'bc'
+THE_TYPE_OF_MOVEMENT_CHOICES = (
+    (NOT_COMPLETED, DEFAULT),
+    (ON_FOOT, 'Пешком'),
+    (BY_CAR, 'На машине'),
+)

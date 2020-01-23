@@ -97,6 +97,12 @@ class PropertyCreate(View):
             'formset': formset,
             'layoutFormset': layout_formset,
             'wayFormset': way_formset,
+            'saltovka_dbvalue': choices.SALTOVKA,
+            'severnaya_saltovka_dbvalue' : choices.SEVERNAYA_SALTOVKA,
+            'micro_district_default_choice': choices.MICRO_DISTRICT_DEFAULT_CHOICE,
+            'micro_district_saltovka_choices': choices.MICRO_DISTRICT_SALTOVKA_CHOICES,
+            'micro_district_severnaya_saltovka_choices': choices.MICRO_DISTRICT_SEVERNAYA_SALTOVKA_CHOICES,
+
         }
 
         return render(request, 'propertyInfo/property_new.html', context)

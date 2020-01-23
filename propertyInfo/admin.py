@@ -19,6 +19,10 @@ class newLayoutsTabularInLine(admin.TabularInline):
     model = layoutImages
     extra = 1
 
+class WayFromMetroTabularInLine(admin.TabularInline):
+    model = wayFromMetro
+    extra = 1
+
 
 class NewBuildingModelAdmin(admin.ModelAdmin):
     class Meta:
@@ -79,7 +83,8 @@ class NewBuildingModelAdmin(admin.ModelAdmin):
                 'description'),
         }),
     )
-    inlines = [newBuildingsTabularInLine, newLayoutsTabularInLine, ]
+    inlines = [newBuildingsTabularInLine, newLayoutsTabularInLine, WayFromMetroTabularInLine]
+
 
 
 admin.site.register(NewBuilding, NewBuildingModelAdmin)
