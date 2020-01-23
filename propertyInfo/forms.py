@@ -22,8 +22,8 @@ class NewBuildingForm(forms.ModelForm):
                                  widget=ChoiceDistrictWidget
                                  )
 
-    micro_district = forms.ChoiceField(choices=choices.MICRO_DISTRICT_DEFAULT_CHOICE,
-                                       label=u"Микрорайон", initial=choices.NOT_COMPLETED,
+    micro_district = forms.ChoiceField(choices=choices.FULL_MICRO_DISTRICT_CHOICES,
+                                       label=u"Микрорайон", initial=choices.MICRO_DISTRICT_DOES_NOT_EXIST,
                                        widget=ChoiceMicroDistrictWidget
                                        )
     # def save(self):

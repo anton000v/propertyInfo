@@ -20,7 +20,7 @@ class NewBuilding(models.Model):
     district = models.CharField(max_length=4, choices=choices.DISTRICT_CHOICES,
                                 default=choices.NOT_COMPLETED,
                                 verbose_name=u"Район")  # )
-    micro_district = models.CharField(max_length=4, choices=choices.MICRO_DISTRICT_DEFAULT_CHOICE,
+    micro_district = models.CharField(max_length=4, choices=choices.FULL_MICRO_DISTRICT_CHOICES,
                                       default=choices.NOT_COMPLETED,
                                       verbose_name="Микрорайон")  # микрорайон
     location = models.CharField(max_length=200, verbose_name=u"Расположение", default=1)  #

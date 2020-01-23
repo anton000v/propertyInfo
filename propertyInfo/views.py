@@ -99,6 +99,7 @@ class PropertyCreate(View):
             'wayFormset': way_formset,
             'saltovka_dbvalue': choices.SALTOVKA,
             'severnaya_saltovka_dbvalue' : choices.SEVERNAYA_SALTOVKA,
+            'micro_district_does_not_exist_choice':choices.MICRO_DISTRICT_DOES_NOT_EXIST_CHOICE,
             'micro_district_default_choice': choices.MICRO_DISTRICT_DEFAULT_CHOICE,
             'micro_district_saltovka_choices': choices.MICRO_DISTRICT_SALTOVKA_CHOICES,
             'micro_district_severnaya_saltovka_choices': choices.MICRO_DISTRICT_SEVERNAYA_SALTOVKA_CHOICES,
@@ -149,7 +150,22 @@ class PropertyCreate(View):
                     break
 
             return redirect('property_detail', slug=property_post.slug)
+        else:
+            context = {
+                'form': form,
+                'formset': formset,
+                'layoutFormset': layout_formset,
+                'wayFormset': way_formset,
+                'saltovka_dbvalue': choices.SALTOVKA,
+                'severnaya_saltovka_dbvalue' : choices.SEVERNAYA_SALTOVKA,
+                'micro_district_does_not_exist_choice':choices.MICRO_DISTRICT_DOES_NOT_EXIST_CHOICE,
+                'micro_district_default_choice': choices.MICRO_DISTRICT_DEFAULT_CHOICE,
+                'micro_district_saltovka_choices': choices.MICRO_DISTRICT_SALTOVKA_CHOICES,
+                'micro_district_severnaya_saltovka_choices': choices.MICRO_DISTRICT_SEVERNAYA_SALTOVKA_CHOICES,
 
+            }
+
+            return render(request, 'propertyInfo/property_new.html', context)
 
 # def property_new(request):
 #     buildingImageFormset = modelformset_factory(buildingImages, fields=('buildingImage',), extra=1)
@@ -242,6 +258,12 @@ class PropertyEdit(View):
             # 'lastElementOfFormset': formset.forms[-1],
             'layoutFormset': layout_formset,
             'wayFormset': way_formset,
+            'saltovka_dbvalue': choices.SALTOVKA,
+            'severnaya_saltovka_dbvalue': choices.SEVERNAYA_SALTOVKA,
+            'micro_district_does_not_exist_choice': choices.MICRO_DISTRICT_DOES_NOT_EXIST_CHOICE,
+            'micro_district_default_choice': choices.MICRO_DISTRICT_DEFAULT_CHOICE,
+            'micro_district_saltovka_choices': choices.MICRO_DISTRICT_SALTOVKA_CHOICES,
+            'micro_district_severnaya_saltovka_choices': choices.MICRO_DISTRICT_SEVERNAYA_SALTOVKA_CHOICES,
         }
 
         return render(request, 'propertyInfo/property_edit.html', context)
@@ -298,7 +320,21 @@ class PropertyEdit(View):
                 except Exception as e:
                     break
             layout_formset.save()
-        return redirect('property_detail', slug=property.slug)
+            return redirect('property_detail', slug=property.slug)
+        context = {
+            'form': form,
+            'formset': formset,
+            # 'lastElementOfFormset': formset.forms[-1],
+            'layoutFormset': layout_formset,
+            'wayFormset': way_formset,
+            'saltovka_dbvalue': choices.SALTOVKA,
+            'severnaya_saltovka_dbvalue': choices.SEVERNAYA_SALTOVKA,
+            'micro_district_does_not_exist_choice': choices.MICRO_DISTRICT_DOES_NOT_EXIST_CHOICE,
+            'micro_district_default_choice': choices.MICRO_DISTRICT_DEFAULT_CHOICE,
+            'micro_district_saltovka_choices': choices.MICRO_DISTRICT_SALTOVKA_CHOICES,
+            'micro_district_severnaya_saltovka_choices': choices.MICRO_DISTRICT_SEVERNAYA_SALTOVKA_CHOICES,
+        }
+        return render(request, 'propertyInfo/property_edit.html', context)
 
 
 # def property_edit(request, slug):

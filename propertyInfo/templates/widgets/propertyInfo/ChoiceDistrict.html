@@ -76,7 +76,8 @@
 {#<link rel="stylesheet"#}
 {#      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.min.css">#}
 {#<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>#}
-<select name="{{ widget.name }}" id="{{ widget.name }}" class="selectpicker" data-live-search="true">
+<select name="{{ widget.name }}" id="{{ widget.name }}" class="selectpicker" data-live-search="true"
+        data-display="static" data-size="6" style="width:auto">
     {% for name, value in widget.attrs.items %}{% if value is not False %}
         {{ name }}{% if value is not True %}="{{ value|stringformat:'s' }}"{% endif %}{% endif %}
     {% endfor %}

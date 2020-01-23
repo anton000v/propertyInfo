@@ -9,7 +9,7 @@
 {#<script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/js/i18n/defaults-*.min.js"></script>#}
 
 {#<div class="micro-district-choice">#}
-    <select name="{{ widget.name }}" id="{{ widget.name }}" class="{{ widget.name }}" disabled>
+    <select name="{{ widget.name }}" id="{{ widget.name }}" class="{{ widget.name }}">
         {% for name, value in widget.attrs.items %}{% if value is not False %}
             {{ name }}{% if value is not True %}="{{ value|stringformat:'s' }}"{% endif %}{% endif %}{% endfor %}
 
