@@ -14,7 +14,7 @@
 
 {% block content %}
 
-    <a class="btn btn-default" href="{% url 'property_edit' slug=building.slug %}"><span
+    <a class="btn btn-default" href="{{ building.get_update_url }}"><span
             class="glyphicon glyphicon-pencil"></span></a>
     <h1 align="center">{{ building.name }}</h1>
 
