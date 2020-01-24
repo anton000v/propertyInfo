@@ -98,8 +98,8 @@ class PropertyCreate(View):
             'layoutFormset': layout_formset,
             'wayFormset': way_formset,
             'saltovka_dbvalue': choices.SALTOVKA,
-            'severnaya_saltovka_dbvalue' : choices.SEVERNAYA_SALTOVKA,
-            'micro_district_does_not_exist_choice':choices.MICRO_DISTRICT_DOES_NOT_EXIST_CHOICE,
+            'severnaya_saltovka_dbvalue': choices.SEVERNAYA_SALTOVKA,
+            'micro_district_does_not_exist_choice': choices.MICRO_DISTRICT_DOES_NOT_EXIST_CHOICE,
             'micro_district_default_choice': choices.MICRO_DISTRICT_DEFAULT_CHOICE,
             'micro_district_saltovka_choices': choices.MICRO_DISTRICT_SALTOVKA_CHOICES,
             'micro_district_severnaya_saltovka_choices': choices.MICRO_DISTRICT_SEVERNAYA_SALTOVKA_CHOICES,
@@ -109,10 +109,17 @@ class PropertyCreate(View):
         return render(request, 'propertyInfo/property_new.html', context)
 
     def post(self, request):
-        form = NewBuildingForm(request.POST)
+        form = NewBuildingForm(request.POST or None)
         formset = self.building_image_formset(request.POST or None, request.FILES or None, prefix='buildingImage')
         layout_formset = self.layout_image_formset(request.POST or None, request.FILES or None, prefix='layoutImage')
         way_formset = self.way_from_metro_formset(request.POST or None, prefix='wayFromMetro')
+
+        # form_name = request.POST.get('name')
+        # form_developer = request.POST.get('developer')
+        # form_address = request.POST.get('address')
+        # form.initial['slug'] = generate_slug(name=form_name, developer=form_developer, address=form_address)
+        # print(form_name, form_developer, form_address)
+        # print(form.slug)
         if form.is_valid() and formset.is_valid() and layout_formset.is_valid() and way_formset.is_valid():
             property_post = form.save()
             property_post.save()
@@ -157,8 +164,8 @@ class PropertyCreate(View):
                 'layoutFormset': layout_formset,
                 'wayFormset': way_formset,
                 'saltovka_dbvalue': choices.SALTOVKA,
-                'severnaya_saltovka_dbvalue' : choices.SEVERNAYA_SALTOVKA,
-                'micro_district_does_not_exist_choice':choices.MICRO_DISTRICT_DOES_NOT_EXIST_CHOICE,
+                'severnaya_saltovka_dbvalue': choices.SEVERNAYA_SALTOVKA,
+                'micro_district_does_not_exist_choice': choices.MICRO_DISTRICT_DOES_NOT_EXIST_CHOICE,
                 'micro_district_default_choice': choices.MICRO_DISTRICT_DEFAULT_CHOICE,
                 'micro_district_saltovka_choices': choices.MICRO_DISTRICT_SALTOVKA_CHOICES,
                 'micro_district_severnaya_saltovka_choices': choices.MICRO_DISTRICT_SEVERNAYA_SALTOVKA_CHOICES,
@@ -166,6 +173,7 @@ class PropertyCreate(View):
             }
 
             return render(request, 'propertyInfo/property_new.html', context)
+
 
 # def property_new(request):
 #     buildingImageFormset = modelformset_factory(buildingImages, fields=('buildingImage',), extra=1)
@@ -244,7 +252,7 @@ class PropertyEdit(View):
                                                              'numberOfMeters',),
                                                          extra=1, can_delete=True)
 
-    def get(self, request,slug):
+    def get(self, request, slug):
         property = get_object_or_404(NewBuilding, slug__iexact=slug)
 
         form = NewBuildingForm(instance=property)
@@ -335,7 +343,6 @@ class PropertyEdit(View):
             'micro_district_severnaya_saltovka_choices': choices.MICRO_DISTRICT_SEVERNAYA_SALTOVKA_CHOICES,
         }
         return render(request, 'propertyInfo/property_edit.html', context)
-
 
 # def property_edit(request, slug):
 #     property = get_object_or_404(NewBuilding, slug__iexact=slug)

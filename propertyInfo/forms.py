@@ -1,5 +1,6 @@
 from django import forms
 from .models import NewBuilding, layoutImages, buildingImages
+from .models import generate_slug
 from .widgets import ChoiceDistrictWidget, ChoiceMicroDistrictWidget, Select2Widget
 from django.core.exceptions import ValidationError
 import propertyInfo.choices as choices
@@ -89,9 +90,14 @@ class NewBuildingForm(forms.ModelForm):
         exclude = ()
 
     def clean_slug(self):
-        new_slug = self.cleaned_data['slug'].lower()
+        form_name = self.cleaned_data['name']
+        form_developer = self.cleaned_data['developer']
+        form_address = self.cleaned_data['address']
+        new_slug = generate_slug(name=form_name, developer=form_developer, address=form_address)
 
         if new_slug == 'new':
             raise ValidationError('Slug не может быть "new"')
+        if new_slug == '':
+            raise ValidationError('Slug не может быть пустым')
         return new_slug
 

@@ -3,7 +3,15 @@ from django.db import models
 from multiselectfield import MultiSelectField
 from django.contrib.auth.models import User
 from django.shortcuts import reverse
+from django.utils.text import slugify
 import propertyInfo.choices as choices
+
+
+def generate_slug(name, developer, address):
+    new_slug_name = slugify(name, allow_unicode=True)
+    new_slug_builder = slugify(developer, allow_unicode=True)
+    new_slug_address = slugify(address, allow_unicode=True)
+    return new_slug_name + '-' + new_slug_builder + '-' + new_slug_address
 
 
 class NewBuilding(models.Model):
@@ -66,7 +74,11 @@ class NewBuilding(models.Model):
     completionDate = models.SmallIntegerField(verbose_name=u"Сдан и принят в эксплуатацию", default=1)
     description = models.TextField(verbose_name=u"Описание", default=1)
 
-    slug = models.SlugField(max_length=150, unique=True, default='def')  # editable = False
+    slug = models.SlugField(max_length=150, unique=True, blank=True)  # editable = False
+
+    # def save(self, *args, **kwargs):
+    #     self.slug = generate_slug(name=self.name, developer=self.developer, address=self.address)
+    #     super().save(*args, **kwargs)
 
     # def save(self, *args, **kwargs):
     #     _slug = '%s-%s' % (self.name, self.address)

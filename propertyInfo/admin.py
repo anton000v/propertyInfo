@@ -34,7 +34,7 @@ class NewBuildingModelAdmin(admin.ModelAdmin):
     fieldsets = (
         (None, {
             'fields': (
-
+                'slug',
                 'name',
                 'address',
                 'administrativeDistrict',
