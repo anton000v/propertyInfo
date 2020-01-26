@@ -74,7 +74,7 @@ class NewBuilding(models.Model):
     completionDate = models.SmallIntegerField(verbose_name=u"Сдан и принят в эксплуатацию", default=1)
     description = models.TextField(verbose_name=u"Описание", default=1)
 
-    slug = models.SlugField(max_length=150, unique=True, blank=True)  # editable = False
+    slug = models.SlugField(max_length=150, unique=True, blank=True, )  # editable = False
 
     # def save(self, *args, **kwargs):
     #     self.slug = generate_slug(name=self.name, developer=self.developer, address=self.address)
@@ -90,6 +90,10 @@ class NewBuilding(models.Model):
 
     def get_update_url(self):
         return reverse('property_edit', kwargs={'slug': self.slug})
+
+    # def save(self, *args, **kwargs):
+    #     self.slug = generate_slug(name=self.name, developer=self.developer, address=self.address)
+    #     super().save(*args, **kwargs)
 
     def __str__(self):
         return self.address

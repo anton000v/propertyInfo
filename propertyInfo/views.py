@@ -113,7 +113,7 @@ class PropertyCreate(View):
         formset = self.building_image_formset(request.POST or None, request.FILES or None, prefix='buildingImage')
         layout_formset = self.layout_image_formset(request.POST or None, request.FILES or None, prefix='layoutImage')
         way_formset = self.way_from_metro_formset(request.POST or None, prefix='wayFromMetro')
-
+        # form.fields['slug'].widget.attrs['required'] = False
         # form_name = request.POST.get('name')
         # form_developer = request.POST.get('developer')
         # form_address = request.POST.get('address')
@@ -286,6 +286,7 @@ class PropertyEdit(View):
         layout_formset = self.layout_image_inlineformset(request.POST or None, request.FILES or None,
                                                          prefix='layoutImage',
                                                          instance=property)
+
         way_formset = self.way_from_metro_inlineformset(request.POST or None, prefix='wayFromMetro', instance=property)
         # print(' MY: < ', formset.deleted_forms, ' >')
 

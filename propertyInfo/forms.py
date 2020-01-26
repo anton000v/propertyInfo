@@ -27,6 +27,9 @@ class NewBuildingForm(forms.ModelForm):
                                        label=u"Микрорайон", initial=choices.MICRO_DISTRICT_DOES_NOT_EXIST,
                                        widget=ChoiceMicroDistrictWidget
                                        )
+
+    slug = forms.SlugField(widget=forms.TextInput(attrs={'readonly': True}), required=False)
+
     # def save(self):
 
     class Meta:
@@ -90,14 +93,34 @@ class NewBuildingForm(forms.ModelForm):
         exclude = ()
 
     def clean_slug(self):
+
         form_name = self.cleaned_data['name']
         form_developer = self.cleaned_data['developer']
         form_address = self.cleaned_data['address']
+        old_slug = self.cleaned_data['slug']
+        # current_id = NewBuilding.objects.get(slug=old_slug).id
         new_slug = generate_slug(name=form_name, developer=form_developer, address=form_address)
-
-        if new_slug == 'new':
-            raise ValidationError('Slug не может быть "new"')
-        if new_slug == '':
-            raise ValidationError('Slug не может быть пустым')
-        return new_slug
-
+        # print(current_id, ' - ', old_slug, ' - ', new_slug)
+        if new_slug != old_slug:
+            if new_slug == 'new':
+                raise ValidationError('Slug не может быть "new".')
+            if new_slug == '':
+                raise ValidationError('Slug не может быть пустым.')
+            if NewBuilding.objects.filter(slug=new_slug).exists():
+                raise ValidationError("Slug '{0}', который вы хотите создать, уже существует".format(new_slug))
+            # self.fields['slug'].widget.attrs['readonly'] = True
+            return new_slug
+        else:
+            # self.fields['slug'].widget.attrs['readonly'] = True
+            return old_slug
+    # def clean_title(self, title):
+    #     from django.utils.text import slugify
+    #     from django.core.exceptions import ValidationError
+    #
+    #     slug = slugify(title)
+    #
+    #     if NewBuilding.objects.filter(slug=slug).exists():
+    #         self. = 'aaa'
+    #         raise ValidationError('A question with this title already exists.')
+    #
+    #     return title

@@ -11,7 +11,7 @@
 {% block content %}
     <form method="POST" class="post-form" enctype="multipart/form-data"> {% csrf_token %}
 
-{#        {{ form.as_p }}#}
+        {#        {{ form.as_p }}#}
 
         {% for field in form %}
             <div class="form-group">
@@ -221,6 +221,25 @@
         });
     </script>
 
+{#    <script>#}
+{#        $("#id_name").change(function () {#}
+{#            alert('name changed');#}
+{#        });#}
+{#        $("#id_address").change(function () {#}
+{#            alert('adr changed');#}
+{#        });#}
+{#        $("#id_builder").change(function () {#}
+{#            alert('builder changed');#}
+{#        });#}
+{##}
+{#        function changeSlugValue(name = '', builder = '', address = '') {#}
+{#            var Slug = $('#id_slug');#}
+{#        }#}
+{#        class Slug {#}
+{#            name = ''#}
+{#        }#}
+{##}
+{#    </script>#}
 
     <script>
 
