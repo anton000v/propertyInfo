@@ -436,3 +436,8 @@ THE_TYPE_OF_MOVEMENT_CHOICES = (
     (ON_FOOT, 'Пешком'),
     (BY_CAR, 'На машине'),
 )
+
+
+
+#---------------------- House letter CHOICES
+WITHOUT_LETTER = '-'

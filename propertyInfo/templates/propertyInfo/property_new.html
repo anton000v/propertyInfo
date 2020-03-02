@@ -1,5 +1,4 @@
 {% extends 'propertyInfo/base.html' %}
-{#{% load staticfiles %}#}
 {% load static %}
 
 {% block custom_css %}
@@ -10,9 +9,6 @@
 
 {% block content %}
     <form method="POST" class="post-form" enctype="multipart/form-data"> {% csrf_token %}
-
-        {#        {{ form.as_p }}#}
-
         {% for field in form %}
             <div class="form-group">
                 <label for="">{{ field.label }}</label>
@@ -23,120 +19,11 @@
             </div>
         {% endfor %}
 
-        {##}
-        {#    <div id="form_set">#}
-
-        {#        {{ formset.as_table }}#}
-        {##}
-        {#        <table class="table table-striped table-dark">#}
-        {#            <thead>#}
-        {#            <tr>#}
-        {#                <th scope="col">Фото</th>#}
-        {#                <th scope="col">Планировки</th>#}
-        {#            </tr>#}
-        {#            </thead>#}
-        {#            <tbody>#}
-        {#            <tr>#}
-        {#                <td>#}
-        {#                    {{ formset.management_form }}#}
-        {#                    {% for current_form in formset %}#}
-        {#                        <div class="row form-row spacer">#}
-        {#                            <div class="col-2">#}
-        {#                                <label>{{ current_form.buildingImage.label }}</label>#}
-        {#                            </div>#}
-        {#                            <div class="col-4">#}
-        {#                                <div class="input-group">#}
-        {#                                    {{ current_form.buildingImage }}#}
-        {#                                    <div class="input-group-append">#}
-        {#                                        <button class="btn btn-success add-form-row">+</button>#}
-        {#                                    </div>#}
-        {#                                </div>#}
-        {#                            </div>#}
-        {#                        </div>#}
-        {#                    {% endfor %}#}
-        {#                </td>#}
-        {#                <td>#}
-        {#                    {{ layoutFormset.management_form }}#}
-        {#                    {% for current_form in layoutFormset %}#}
-        {#                        <div class="row form-row spacer">#}
-        {#                            <div class="col-2">#}
-        {#                                <label>{{ current_form.layoutImage.label }}</label>#}
-        {#                            </div>#}
-        {#                            <div class="col-4">#}
-        {#                                <div class="input-group">#}
-        {#                                    {{ current_form.layoutImage }}#}
-        {#                                    <div class="input-group-append">#}
-        {#                                        <button class="btn btn-success add-form-row">+</button>#}
-        {#                                    </div>#}
-        {#                                </div>#}
-        {#                            </div>#}
-        {#                        </div>#}
-        {#                    {% endfor %}#}
-        {#                </td>#}
-        {#            </tr>#}
-        {##}
-        {#            </tbody>#}
-        {#        </table>#}
-
-        {#        {{ formset.management_form }}#}
-        {#        <h4>Фото</h4>#}
-        {#        {% for current_form in formset %}#}
-        {#            <div class="row form-row spacer">#}
-        {#                <div class="col-2">#}
-        {#                    <label>{{ current_form.buildingImage.label }}</label>#}
-        {#                </div>#}
-        {#                <div class="col-4">#}
-        {#                    <div class="input-group">#}
-        {#                        {{ current_form.buildingImage }}#}
-        {#                        <div class="input-group-append">#}
-        {#                            <button class="btn btn-success add-form-row">+</button>#}
-        {#                        </div>#}
-        {#                    </div>#}
-        {#                </div>#}
-        {#            </div>#}
-        {#        {% endfor %}#}
-        {##}
-        {#        {{ layoutFormset.management_form }}#}
-        {#        <h4>Планировки</h4>#}
-        {#        {% for current_form in layoutFormset %}#}
-        {#            <div class="row form-row2 spacer">#}
-        {#                <div class="col-2">#}
-        {#                    <label>{{ current_form.layoutImage.label }}</label>#}
-        {#                </div>#}
-        {#                <div class="col-4">#}
-        {#                    <div class="input-group">#}
-        {#                        {{ current_form.layoutImage }}#}
-        {#                        <div class="input-group-append">#}
-        {#                            <button class="btn btn-success add-form-row2">+</button>#}
-        {#                        </div>#}
-        {#                    </div>#}
-        {#                </div>#}
-        {#            </div>#}
-        {#        {% endfor %}#}
-
-        {#        {% csrf_token %}#}
-        {#        {{ formset.media }}#}
-        {##}
-        {#        {% for cur_form in formset %}#}
-        {#            <div class="individual-form">#}
-        {#                {{ cur_form.as_p }}#}
-        {#            </div>#}
-        {#        {% endfor %}#}
-        {#        {{ formset.management_form }}#}
-        {##}
-        {#        {% for form in layoutFormset %}#}
-        {#            <div class="individual-form2">#}
-        {#                {{ form.as_p }}#}
-        {#            </div>#}
-        {#        {% endfor %}#}
-        {#        {{ layoutFormset.management_form }}#}
-
         <div class="container">
             <div class="row h-100 justify-content-center align-items-center">
                 <div class="col">
                     {{ formset.media }}
                     {% for cur_form in formset.forms %}
-                        {#                        {{ cur_form.id }}#}
                         <div class="individual-form">
                             {{ cur_form.as_p }}
                         </div>
@@ -163,28 +50,6 @@
 
         <input type="submit" name="Далее" value="Сохранить">
     </form>
-
-
-
-    {#    <h3>FormSet example</h3>#}
-    {#    {{ formset.management_form }}#}
-    {#    <div id="form_set">#}
-    {#        {% for form in formset.forms %}#}
-    {#            {{ form.non_field_errors }}#}
-    {#            {{ form.errors }}#}
-    {#            <table class='no_error'>#}
-    {#                {{ form }}#}
-    {#            </table>#}
-    {#        {% endfor %}#}
-    {#    </div>#}
-    {#    <input type="button" value="Add More" id="add_more">#}
-    {#    <div id="empty_form" style="display:none">#}
-    {#        <table class='no_error'>#}
-    {#            {{ formset.empty_form }}#}
-    {#        </table>#}
-    {#    </div>#}
-
-
 {% endblock %}
 
 
@@ -221,26 +86,8 @@
         });
     </script>
 
-{#    <script>#}
-{#        $("#id_name").change(function () {#}
-{#            alert('name changed');#}
-{#        });#}
-{#        $("#id_address").change(function () {#}
-{#            alert('adr changed');#}
-{#        });#}
-{#        $("#id_builder").change(function () {#}
-{#            alert('builder changed');#}
-{#        });#}
-{##}
-{#        function changeSlugValue(name = '', builder = '', address = '') {#}
-{#            var Slug = $('#id_slug');#}
-{#        }#}
-{#        class Slug {#}
-{#            name = ''#}
-{#        }#}
-{##}
-{#    </script>#}
-
+    <script src='{% static "js/propertyInfo/address.js" %}'></script>
+    
     <script>
 
         function cleanMicroDistrictList(microDistrictSelect, isDistrictsExist) {

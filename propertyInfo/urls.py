@@ -11,6 +11,7 @@ urlpatterns = [
     path('property/new/', views.PropertyCreate.as_view(), name='property_new'),
     path('property/<str:slug>/', views.PropertyDetail.as_view(), name='property_detail'),
     path('property/<str:slug>/edit/', views.PropertyEdit.as_view(), name='property_edit'),
+    path('fill_in_house_letter/',views.fill_in_house_letter,name='fill_in_house_letter'),
     # path('update_content/', views.update_content, name='update_content'),
 
 ]

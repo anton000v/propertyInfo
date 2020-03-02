@@ -11,3 +11,4 @@ db.sqlite3
 venv
 **/migrations/*
 **/media/*
+local_settings.py

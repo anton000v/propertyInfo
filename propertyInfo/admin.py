@@ -1,13 +1,22 @@
 from django.contrib import admin
 from django.contrib.auth.models import Group
-from .models import *
+from . import models
 
 admin.site.site_header = 'My site'
 admin.site.unregister(Group)
 
+class DistrictsModelAdmin(admin.ModelAdmin):
+    class Meta:
+        model = models.Districts
+       # js = ('admin/test.js',)
+
+class StreetsModelAdmin(admin.ModelAdmin):
+    class Meta:
+        model = models.Streets
+
 
 class newBuildingsTabularInLine(admin.TabularInline):
-    model = buildingImages
+    model = models.buildingImages
     extra = 1
 
 
@@ -16,27 +25,29 @@ class newLayoutsTabularInLine(admin.TabularInline):
         verbose_name = 'Планировки'
         verbose_name_plural = 'Items i18n'
 
-    model = layoutImages
+    model = models.layoutImages
     extra = 1
 
 class WayFromMetroTabularInLine(admin.TabularInline):
-    model = wayFromMetro
+    model = models.wayFromMetro
     extra = 1
 
 
 class NewBuildingModelAdmin(admin.ModelAdmin):
     class Meta:
-        model = NewBuilding
+        model = models.NewBuilding
        # js = ('admin/test.js',)
 
 
-    list_display = ('name', 'address', 'district', 'developer',)
+    # list_display = ('name', 'address', 'district', 'developer',)
     fieldsets = (
         (None, {
             'fields': (
                 'slug',
                 'name',
-                'address',
+                'street',
+                'house_number',
+                'house_letter',
                 'administrativeDistrict',
                 'district',
                 'micro_district',
@@ -87,10 +98,6 @@ class NewBuildingModelAdmin(admin.ModelAdmin):
 
 
 
-admin.site.register(NewBuilding, NewBuildingModelAdmin)
-
-
-
-
-
-
+admin.site.register(models.NewBuilding, NewBuildingModelAdmin)
+admin.site.register(models.Districts, DistrictsModelAdmin)
+admin.site.register(models.Streets, StreetsModelAdmin)

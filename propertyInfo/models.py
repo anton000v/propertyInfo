@@ -3,16 +3,24 @@ from django.db import models
 from multiselectfield import MultiSelectField
 from django.contrib.auth.models import User
 from django.shortcuts import reverse
-from django.utils.text import slugify
+# from .utils import generate_slug
 import propertyInfo.choices as choices
 
+class Districts(models.Model):
+    dist_ru = models.CharField(max_length=150)
+    dist_ukr = models.CharField(max_length=150)
+    old_dist_ru = models.CharField(max_length=150, null=True,blank=True)
+    old_dist_urk = models.CharField(max_length=150, null=True,blank=True)
 
-def generate_slug(name, developer, address):
-    new_slug_name = slugify(name, allow_unicode=True)
-    new_slug_builder = slugify(developer, allow_unicode=True)
-    new_slug_address = slugify(address, allow_unicode=True)
-    return new_slug_name + '-' + new_slug_builder + '-' + new_slug_address
+    def __str__(self):
+        return "{} - {}".format(self.dist_ru,self.dist_ukr)
 
+class Streets(models.Model):
+    street_ru = models.CharField(max_length=150)
+    street_uk = models.CharField(max_length=150)
+
+    def __str__(self):
+        return self.street_ru
 
 class NewBuilding(models.Model):
     class Meta():
@@ -20,8 +28,12 @@ class NewBuilding(models.Model):
         ordering = ['name']
 
     name = models.CharField(max_length=200, verbose_name=u'Название', default=1)
-    # messageG = forms.CharField(widget=forms.Textarea, label='lolkek')
-    address = models.CharField(max_length=200, verbose_name=u"Адрес", default=1)  # адресс
+
+    # address = models.CharField(max_length=200, verbose_name=u"Адрес", default=1)  # адресс
+    street = models.ForeignKey(Streets,on_delete=models.CASCADE)
+    house_number = models.CharField(max_length=10)
+    house_letter = models.CharField(max_length=1)
+
     administrativeDistrict = models.CharField(max_length=2, choices=choices.THE_ADMINISTRATIVE_DISTRICT_CHOICES,
                                               default=choices.NOT_COMPLETED,
                                               verbose_name=u"Административный район")  #
