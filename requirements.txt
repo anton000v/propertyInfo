@@ -18,4 +18,4 @@ pytz==2019.2
 requests==2.23.0
 sqlparse==0.3.0
 Unidecode==1.0.23
-urllib3==1.25.8
+urllib3==1.26.5
